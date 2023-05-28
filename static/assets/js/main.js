@@ -143,3 +143,8 @@
 			});
 
 })(jQuery);
+
+function closeButton() {
+	const element = document.getElementById("scriptbois");
+	element.remove();
+  }

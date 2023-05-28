@@ -8,5 +8,5 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=200)
     subtitle = models.CharField(max_length=400)
     date = models.CharField(max_length=30)
-    body = models.CharField(max_length=2000)
+    body = RichTextField()
     img_url = models.URLField()

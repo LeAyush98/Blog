@@ -1,4 +1,5 @@
 {% extends "Data/base.html" %}
+{% load static %}
 <!DOCTYPE HTML>
     {% block content %}
 	<body class="is-preload">
@@ -19,7 +20,7 @@
 						<div class="inner">
 							<h2>Menu</h2>
 							<ul class="links">
-								<li><a href="index.html">Home</a></li>
+								<li><a href="{% url 'home' %}">Home</a></li>
 								<li><a href="generic.html">Generic</a></li>
 								<li><a href="elements.html">Elements</a></li>
 								<li><a href="#">Log In</a></li>
@@ -30,7 +31,7 @@
 					</nav>
 
 				<!-- Wrapper -->
-					<section id="wrapper">
+					<section id="wrapper" style="background-image: url('{% static "images/edit-bg.jpg"%}') !important">
 						<header>
 							<div class="inner">
 								<h2>Create Post</h2>

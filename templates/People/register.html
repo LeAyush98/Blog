@@ -1,0 +1,61 @@
+{% extends 'People/base.html'%}
+{% load static %}
+{% load socialaccount %}
+{% block content%}
+<body class="is-preload">
+
+    <!-- Page Wrapper -->
+        <div id="page-wrapper">
+
+            <!-- Header -->
+                <header id="header">
+                    <h1><a href="{% url 'home' %}">Ayush's Blog</a></h1>
+                    <nav>
+                        <a href="#menu">Menu</a>
+                    </nav>
+                </header>
+
+            <!-- Menu -->
+                <nav id="menu">
+                    <div class="inner">
+                        <h2>Menu</h2>
+                        <ul class="links">
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="generic.html">Generic</a></li>
+                            <li><a href="elements.html">Elements</a></li>
+                            <li><a href="#">Log In</a></li>
+                            <li><a href="#">Sign Up</a></li>
+                        </ul>
+                        <a href="#" class="close">Close</a>
+                    </div>
+                </nav>
+
+            <!-- Wrapper -->
+                <section id="wrapper" style="background-image: url('{% static "images/edit-bg.jpg"%}') !important">
+                    <header>
+                        <div class="inner">
+                            <h2>Login</h2>
+                            <p>Just a sec...</p>
+                        </div>
+                    </header>
+
+                    <!-- Content -->
+                        <div class="wrapper">
+                            <div class="inner">
+                                <form method = "POST">
+                                    {% csrf_token %}
+                                   {{form.as_p}}
+                                    <button type="submit" class="btn btn-success">Register</button> 
+                                </form>
+                                <a href="{% provider_login_url 'google' %}?next=/" class="btn btn-outline-primary">Log In with Google</a>
+
+                               
+                            </div>
+                        </div>
+
+                </section>
+
+        </div>
+
+
+{% endblock %}
