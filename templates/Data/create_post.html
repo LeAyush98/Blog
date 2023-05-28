@@ -1,0 +1,58 @@
+{% extends "Data/base.html" %}
+<!DOCTYPE HTML>
+    {% block content %}
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="{% url 'home' %}">Ayush's Blog</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="generic.html">Generic</a></li>
+								<li><a href="elements.html">Elements</a></li>
+								<li><a href="#">Log In</a></li>
+								<li><a href="#">Sign Up</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>Create Post</h2>
+								<p>This one is going to be amazing I know!</p>
+							</div>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        {{form.media}}
+                                        {{ form.as_p }}
+                                        <button type="submit">Create</button>
+                                    </form>
+
+                                   
+								</div>
+							</div>
+
+					</section>
+
+			</div>
+    {% endblock %}
