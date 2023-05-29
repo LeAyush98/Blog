@@ -13,7 +13,7 @@ class BlogPost(models.Model):
     subtitle = models.CharField(max_length=400)
     date = models.CharField(max_length=30)
     body = RichTextField()
-    img_url = models.URLField()  
+    img_url = models.CharField(max_length=200)  
     user = models.ForeignKey(to=User, on_delete= models.CASCADE)
 
     def __str__(self) -> str:

@@ -29,7 +29,8 @@ def contact(request):
 # Create your views here.
 def home(request):
     contact(request)
-    return render(request, "Main/index.html", {})
+    beans = ["Ayush", "Roderick", "Ayush", "Belit"]
+    return render(request, "Main/index.html", {"beans" : beans})
 
 def about(request):
     contact(request)

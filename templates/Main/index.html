@@ -56,54 +56,35 @@
 
 				<!-- Wrapper -->
 					<section id="wrapper">
-
-						<!-- One -->
-							<section id="one" class="wrapper spotlight style1">
+						{% for obj in beans %}
+						    {% if forloop.counter|divisibleby:2 %}
+							<section id="two" class="wrapper alt spotlight styletwo">
 								<div class="inner">
-									<a href="#" class="image"><img src="{% static 'images/cato1.png' %}" alt="" /></a>
+									<a href="#" class="image"><img src="../../static/images/cato{{forloop.counter}}.png" alt="" /></a>
 									<div class="content">
-										<h2 class="major">Magna arcu feugiat</h2>
-										<p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras turpis ante, nullam sit amet turpis non, sollicitudin posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla dignissim dapibus. Nullam ultrices, neque et faucibus viverra, ex nulla cursus.</p>
-										<a href="#" class="special">Learn more</a>
-									</div>
-								</div>
-							</section>
-
-						<!-- Two -->
-							<section id="two" class="wrapper alt spotlight style2">
-								<div class="inner">
-									<a href="#" class="image"><img src="{% static 'images/cato2.png' %}" alt="" /></a>
-									<div class="content">
-										<h2 class="major">Tempus adipiscing</h2>
-										<p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras turpis ante, nullam sit amet turpis non, sollicitudin posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla dignissim dapibus. Nullam ultrices, neque et faucibus viverra, ex nulla cursus.</p>
-										<a href="#" class="special">Learn more</a>
-									</div>
-								</div>
-							</section>
-
-						<!-- One -->
-							<section id="one" class="wrapper spotlight style1">
-								<div class="inner">
-									<a href="#" class="image"><img src="{% static 'images/cato3.png' %}" alt="" /></a>
-									<div class="content">
-										<h2 class="major">Nullam dignissim</h2>
+										<h2 class="major">{{obj}}</h2>
 										<p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras turpis ante, nullam sit amet turpis non, sollicitudin posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla dignissim dapibus. Nullam ultrices, neque et faucibus viverra, ex nulla cursus.</p>
 										<a href="#" class="special">Learn more</a>
 									</div>
 								</div>
 							</section>
                         
-						<!-- Two -->
-						<section id="two" class="wrapper alt spotlight style2">
-							<div class="inner">
-								<a href="#" class="image"><img src="{% static 'images/cato4.png' %}" alt="" /></a>
-								<div class="content">
-									<h2 class="major">Tempus adipiscing</h2>
-									<p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras turpis ante, nullam sit amet turpis non, sollicitudin posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla dignissim dapibus. Nullam ultrices, neque et faucibus viverra, ex nulla cursus.</p>
-									<a href="#" class="special">Learn more</a>
+							{% else %}
+							
+							<section id="one" class="wrapper spotlight styleone">
+								<div class="inner">
+									<a href="#" class="image"><img src="../../static/images/cato{{forloop.counter}}.png" alt="" /></a>
+									<div class="content">
+										<h2 class="major">{{obj}}</h2>
+										<p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras turpis ante, nullam sit amet turpis non, sollicitudin posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla dignissim dapibus. Nullam ultrices, neque et faucibus viverra, ex nulla cursus.</p>
+										<a href="#" class="special">Learn more</a>
+									</div>
 								</div>
-							</div>
-						</section>
+							</section>
+							
+							{% endif %}
+	
+						{% endfor %}
 					</section>
 
 	{% endblock %}
