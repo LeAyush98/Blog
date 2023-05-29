@@ -27,9 +27,8 @@
                             <li><a href="{% url 'login' %}">Log In</a></li>
                             <li><a href="{% url 'register' %}">Register</a></li>
                             {% endif %}
-                            <li><a href="generic.html">Generic</a></li>
                             <li><a href="{% url 'create' %}" >Add a post</a></li>
-                            <li><a href="elements.html">Elements</a></li>
+                            <li><a href="{% url 'about' %}">About</a></li>
                             
                         </ul>
                         <a href="#" class="close">Close</a>
@@ -42,6 +41,17 @@
                         <div class="inner">
                             <h2>Login</h2>
                             <p>Just a sec...</p>
+                            <div id = "scriptbois">
+								{% if messages %}
+								{% for message in messages%}
+									<strong> {{message}}</strong>
+									<button onclick="closeButton()">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								{%endfor%}
+								{%endif %} 
+							
+							</div>
                         </div>
                     </header>
 

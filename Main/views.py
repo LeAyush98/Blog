@@ -30,3 +30,7 @@ def contact(request):
 def home(request):
     contact(request)
     return render(request, "Main/index.html", {})
+
+def about(request):
+    contact(request)
+    return render(request, "Main/about.html", {})
