@@ -16,7 +16,13 @@ class BlogPost(models.Model):
     img_url = models.URLField()  
     user = models.ForeignKey(to=User, on_delete= models.CASCADE)
 
+    def __str__(self) -> str:
+        return self.title
+
 class Comments(models.Model):
     comment = models.CharField(max_length=400)
     user = models.ForeignKey(to= User, on_delete= models.CASCADE)
     blog_post = models.ForeignKey(to= BlogPost, on_delete= models.CASCADE)
+    
+    def __str__(self) -> str:
+        return f"{self.user}'s comment on {self.blog_post}"
