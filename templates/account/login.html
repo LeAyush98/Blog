@@ -1,0 +1,135 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% load static %}
+{% load account socialaccount %}
+{% block head_title %}{% trans "Log In" %}{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'assets/css/main.css'%}" />
+		<link rel="stylesheet" href="{% static 'assets/css/fontawesome-all.min.css'%}">
+        <link rel="shortcut icon" href="{%static 'images/favicon.ico'%}" type="image/x-icon">
+		
+{% endblock %}
+{% block body %}
+<body class="is-preload">
+
+  <!-- Page Wrapper -->
+      <div id="page-wrapper">
+
+          <!-- Header -->
+              <header id="header">
+                  <h1><a href="{% url 'home' %}">Ayush's Blog</a></h1>
+                  <nav>
+                      <a href="#menu">Menu</a>
+                  </nav>
+              </header>
+
+          <!-- Menu -->
+              <nav id="menu">
+                  <div class="inner">
+                      <h2>Menu</h2>
+                      <ul class="links">
+                          <li><a href="{% url 'home' %}">Home</a></li>
+                          {% if user.is_authenticated %}
+                          <li><a href="{% url 'logout' %}">Log Out</a></li>
+                          {% else %}
+                          <li><a href="{% url 'login' %}">Log In</a></li>
+                          <li><a href="{% url 'register' %}">Register</a></li>
+                          {% endif %}
+                          <li><a href="generic.html">Generic</a></li>
+                          <li><a href="{% url 'create' %}" >Add a post</a></li>
+                          <li><a href="elements.html">Elements</a></li>
+                          
+                      </ul>
+                      <a href="#" class="close">Close</a>
+                  </div>
+              </nav>
+
+          <!-- Wrapper -->
+              <section id="wrapper" style="background-image: url('{% static "images/edit-bg.jpg"%}') !important">
+                  <header>
+                      <div class="inner">
+                          <h2>Login</h2>
+                          <p>Just a sec...</p>
+                      </div>
+                  </header>
+
+                  <!-- Content -->
+                      <div class="wrapper">
+                          <div class="inner">
+                              <form method = "POST">
+                                  {% csrf_token %}
+                                  <div class="mb-2" >
+                                  <label for="textInputEmail1" class="form-label">Username</label>
+                                  <input type="text" class="form-control col-xs-3" name="username" aria-describedby="emailHelp">
+                                  </div>
+                                  <br>
+                                  <div class="mb-3">
+                                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                                  <input type="password" class="form-control col-xs-3" name="password">
+                                  </div>
+                                  <br>
+                                  <button type="submit" class="btn btn-success">Log In</button>
+                                  
+                              </form>
+                              {% block content %}
+                                {% get_providers as socialaccount_providers %}
+                                {% if socialaccount_providers %}
+                                <div class="socialaccount_ballot">
+                                    <a href="{% provider_login_url 'google' %}?next=/" class="btn btn-outline-primary">Log In with Google</a>
+                                  
+                                </div>
+
+                                {% endif %}
+                                {% include "socialaccount/snippets/login_extra.html" %}
+                              {% endblock %}
+                             
+                          </div>
+                      </div>
+
+              </section>
+
+      </div>
+
+
+
+
+</div>
+</section>
+</div>    
+</div>        
+
+<!-- Footer -->
+<section id="footer">
+						
+  <div class="inner">
+    <h2 class="major">Get in touch</h2>
+    <p>Send me your feedback, I will reply soon as I can.</p>
+    <ul class="contact">
+      <li class="icon solid fa-home">
+        New Delhi<br />
+        110092 <br />
+      </li>
+      <li class="icon solid fa-phone">+91-989-898-9898</li>
+      <li class="icon brands fa-twitter"><a href="https://twitter.com/AyuShar21365283">twitter.com/AyuShar21365283</a></li>
+      <li class="icon brands fa-github"><a href="https://github.com/LeAyush98">github.com/LeAyush98</a></li>
+      <li class="icon brands fa-instagram"><a href="https://www.instagram.com/ayush_shar7/">instagram.com/ayush_shar7</a></li>
+      <li class="icon brands fa-linkedin"><a href="https://www.linkedin.com/in/ayush-sharma-913a3025b/">linkedin.com/in/ayush-sharma-913a3025b</a></li>
+    </ul>
+    <ul class="copyright">
+      <li>&copy; Ayush Sharma, 2023. All rights reserved.</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<!-- Scripts -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+<script src="{% static 'assets/js/browser.min.js' %}"></script>
+<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+<script src="{% static 'assets/js/util.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+{% endblock %}
+
+

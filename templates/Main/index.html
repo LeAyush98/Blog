@@ -20,11 +20,16 @@
 							<h2>Menu</h2>
 							<ul class="links">
 								<li><a href="{% url 'home' %}">Home</a></li>
+								{% if user.is_authenticated %}
+								<li><a href="{% url 'logout' %}">Log Out</a></li>
+								{% else %}
+								<li><a href="{% url 'login' %}">Log In</a></li>
+								<li><a href="{% url 'register' %}">Register</a></li>
+								{% endif %}
 								<li><a href="generic.html">Generic</a></li>
 								<li><a href="{% url 'create' %}" >Add a post</a></li>
 								<li><a href="elements.html">Elements</a></li>
-								<li><a href="{% url 'login' %}">Log In</a></li>
-								<li><a href="{% url 'register' %}">Register</a></li>
+								
 							</ul>
 							<a href="#" class="close">Close</a>
 						</div>
