@@ -32,6 +32,7 @@ def login_user(request):
     if request.method == "POST":
         user = authenticate(request, username = request.POST["username"], password = request.POST["password"])
         if user:
+            login(request, user)
             messages.success(request, f"Welcome {user.first_name}!")
             return redirect("home")
         else:
