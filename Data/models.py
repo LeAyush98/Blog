@@ -26,3 +26,4 @@ class Comments(models.Model):
     
     def __str__(self) -> str:
         return f"{self.user}'s comment on {self.blog_post}"
+    

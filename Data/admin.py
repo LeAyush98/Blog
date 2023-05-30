@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import BlogPost, Comments
 
+
 # Register your models here.
 class BlogPostPresence(admin.ModelAdmin):
     model = BlogPost

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from Data.models import BlogPost
 import smtplib
 from dotenv import load_dotenv
 import os
@@ -29,8 +30,8 @@ def contact(request):
 # Create your views here.
 def home(request):
     contact(request)
-    beans = ["Ayush", "Roderick", "Ayush", "Belit"]
-    return render(request, "Main/index.html", {"beans" : beans})
+    posts = BlogPost.objects.all()
+    return render(request, "Main/index.html", {"posts" : posts})
 
 def about(request):
     contact(request)
