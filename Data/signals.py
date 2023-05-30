@@ -1,4 +1,5 @@
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 from .models import BlogPost, Comments
 import smtplib
 from dotenv import load_dotenv
@@ -25,3 +26,9 @@ def notifier(sender, instance, created, **kw):
         mail(instance.author, instance.title)
 
 post_save.connect(receiver= notifier, sender= BlogPost)    
+
+# Alternate way with decorator 
+# @receiver(signal= post_save, sender = notifier)
+# def notifier(sender, instance, created, **kw):
+#     if created:
+#         mail(instance.author, instance.title)

@@ -1,0 +1,69 @@
+{% extends "Data/base.html" %}
+{% load static %}
+<!DOCTYPE HTML>
+    {% block content %}
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="{% url 'home' %}">Ayush's Blog</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="{% url 'home' %}">Home</a></li>
+								{% if user.is_authenticated %}
+								<li><a href="{% url 'logout' %}">Log Out</a></li>
+								{% else %}
+								<li><a href="{% url 'login' %}">Log In</a></li>
+								<li><a href="{% url 'register' %}">Register</a></li>
+								{% endif %}
+								<li><a href="{% url 'create' %}" >Add a post</a></li>
+								<li><a href="{% url 'about' %}">About</a></li>
+								
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Wrapper -->
+					<section id="wrapper" style="background-image: url('{{post.img_url}}') !important; background-size: cover;">
+						<header>
+							<div class="inner">
+								<h1 style="backdrop-filter:blur(10px);">{{post.title}}</h1>
+                                <h2 style="backdrop-filter:blur(10px);" class="subheading">{{post.subtitle}}</h2>
+                                <span class="meta">Posted by
+                                <a style="backdrop-filter:blur(10px);" href="#">{{post.author}}</a>
+                                on {{post.date}}</span>
+								<div id = "scriptbois">
+									{% if messages %}
+									{% for message in messages%}
+										<strong> {{message}}</strong>
+										<button onclick="closeButton()">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									{%endfor%}
+									{%endif %} 
+							</div>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+                                    {{post.body | safe }}
+								</div>
+							</div>
+
+					</section>
+
+			</div>
+    {% endblock %}

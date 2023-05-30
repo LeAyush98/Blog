@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import BlogPostForm
-from .models import BlogPost
+from .forms import BlogPostForm, CommentsForm
+from .models import BlogPost, Comments
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import datetime
@@ -62,3 +62,7 @@ def delete_post(request, id):
     else:
         messages.error(request, "You are not authorised to do that.")
         return redirect("home")
+
+def post(request, id):
+    post = BlogPost.objects.get(id = id)
+    return render(request, "Data/post.html", {"post": post})    
