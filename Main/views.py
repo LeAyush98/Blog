@@ -30,7 +30,7 @@ def contact(request):
 # Create your views here.
 def home(request):
     contact(request)
-    posts = BlogPost.objects.all()
+    posts = BlogPost.objects.all().order_by("id")
     return render(request, "Main/index.html", {"posts" : posts})
 
 def about(request):

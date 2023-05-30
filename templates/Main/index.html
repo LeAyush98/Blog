@@ -56,7 +56,7 @@
 
 				<!-- Wrapper -->
 					<section id="wrapper">
-						{% for post in posts %}
+						{% for post in posts reversed%}
 						    {% if forloop.counter|divisibleby:2 %}
 							<section id="two" class="wrapper alt spotlight styletwo">
 								<div class="inner">
@@ -65,7 +65,11 @@
 										<h2 class="major">{{post.title}}</h2>
 										<p>{{post.subtitle}}</p>
 										<p>Posted by {{post.author}} on {{post.date}}</p>
-										<a href="#" class="special">Read</a>
+										<a href="#" class="special">Dive In</a>
+										{% if user.id == 1 or user.id == post.user_id %}
+										<a href="{% url 'update' id=post.id%}" class="special">Update</a>
+										<a href="{% url 'delete' id=post.id%}" class="special">Delete</a>
+										{% endif %}
 									</div>
 								</div>
 							</section>
@@ -79,7 +83,11 @@
 										<h2 class="major">{{post.title}}</h2>
 										<p>{{post.subtitle}}</p>
 										<p>Posted by {{post.author}} on {{post.date}}</p>
-										<a href="#" class="special">Read</a>
+										<a href="#" class="special">Dive In</a>
+										{% if user.id == 1 or user.id == post.user_id %}
+										<a href="{% url 'update' id=post.id%}" class="special">Update</a>
+										<a href="{% url 'delete' id=post.id%}" class="special">Delete</a>
+										{% endif %}
 									</div>
 								</div>
 							</section>
