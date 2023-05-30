@@ -65,4 +65,21 @@ def delete_post(request, id):
 
 def post(request, id):
     post = BlogPost.objects.get(id = id)
-    return render(request, "Data/post.html", {"post": post})    
+    form = CommentsForm()
+    comments = Comments.objects.filter(blog_post_id = id)
+    if request.method == "POST":
+        form = CommentsForm(request.POST)
+        if request.user.is_authenticated:
+            if form.is_valid():
+                Comments.objects.create(
+                    comment = form.cleaned_data['comment'],
+                    user = request.user,
+                    blog_post = post
+                )
+                messages.success(request, "Comment added")
+                return redirect("post", id=id)
+        else:
+            messages.error(request, "Please Log in first...")
+            return redirect("login")  
+              
+    return render(request, "Data/post.html", {"post": post, "form": form, "comments" : comments})    

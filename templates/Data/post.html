@@ -60,7 +60,21 @@
 							<div class="wrapper">
 								<div class="inner">
                                     {{post.body | safe }}
+                                    <form method= "POST">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                        <button type ="submit" class= "button">Add</button>
+                                    </form>
+                                    <hr class= "major">
+                                    {% if comments %}
+                                    <ul>
+                                    {% for comment in comments %}
+                                    <li>{{comment.user.first_name}} commented "{{comment.comment}}" </li>
+                                    {% endfor %}
+                                    </ul>
+                                    {% endif %}
 								</div>
+
 							</div>
 
 					</section>
