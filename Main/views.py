@@ -2,16 +2,17 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from Data.models import BlogPost
 import smtplib
-from dotenv import load_dotenv
+import boto3
 import os
 
-load_dotenv(".env")
+AWS_REGION = "ap-south-1"
+ssm_client = boto3.client("ssm", region_name=AWS_REGION)
 
 def mail(name:str, email:str, message:str) -> None:
-    EMAIL = os.getenv("EMAIL")
-    PASSWORD = os.getenv("PASSWORD")
+    EMAIL = ssm_client.get_parameter(Name='contact_email', WithDecryption=True)['Parameter']['Value']
+    PASSWORD = ssm_client.get_parameter(Name='contact_password', WithDecryption=True)['Parameter']['Value']
 
-    connection = smtplib.SMTP("smtp.gmail.com")
+    connection = smtplib.SMTP("smtp.gmail.com", 587)
     connection.starttls()
     connection.login(user=EMAIL, password=PASSWORD)
     connection.sendmail(
